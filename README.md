@@ -1,6 +1,141 @@
-# Wine Quality Prediction Model - CS 643 Cloud Computing Assignment
+# Wine Quality Prediction using Spark MLlib
 
-This project implements a wine quality prediction model using Apache Spark and MLlib, trained in parallel on AWS EC2 instances. The model is containerized using Docker for easy deployment.
+This project implements a machine learning model to predict wine quality using Apache Spark MLlib. The model is trained on wine quality data and can be used to predict the quality of wine based on various chemical properties.
+
+## Project Structure
+
+```
+wine-quality-prediction/
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/
+│               └── wine/
+│                   └── prediction/
+│                       ├── WineQualityPredictor.java
+│                       └── WineQualityTrainer.java
+├── dataset/
+│   └── TrainingDataset.csv
+├── Dockerfile
+├── pom.xml
+└── convert_to_word.sh
+```
+
+## Features
+
+- Wine quality prediction using Random Forest Regression
+- Integration with AWS S3 for model storage
+- Docker containerization for easy deployment
+- Maven-based project structure
+- Support for both training and prediction phases
+
+## Technologies Used
+
+- Apache Spark 3.3.1
+- Spark MLlib
+- Java 8
+- Maven
+- Docker
+- AWS S3
+- Hadoop S3A
+
+## Setup and Configuration
+
+### Prerequisites
+
+- Java 8 or higher
+- Maven
+- Docker
+- AWS credentials with S3 access
+
+### Environment Variables
+
+The following environment variables need to be set:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_SESSION_TOKEN
+- AWS_REGION
+
+### Building the Project
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Saideepak9676/wine-quality-prediction.git
+cd wine-quality-prediction
+```
+
+2. Build the project using Maven:
+```bash
+mvn clean package
+```
+
+### Docker Setup
+
+1. Build the Docker image:
+```bash
+docker build -t saideepak9676/wine-quality-prediction .
+```
+
+2. Run the container:
+```bash
+docker run -e AWS_ACCESS_KEY_ID=your_access_key \
+           -e AWS_SECRET_ACCESS_KEY=your_secret_key \
+           -e AWS_SESSION_TOKEN=your_session_token \
+           -e AWS_REGION=your_region \
+           saideepak9676/wine-quality-prediction
+```
+
+## Model Training
+
+The training process:
+1. Reads wine quality data from a CSV file
+2. Preprocesses the data using Spark
+3. Trains a Random Forest Regression model
+4. Saves the model to AWS S3
+
+## Prediction
+
+The prediction process:
+1. Loads the trained model from S3
+2. Takes input wine parameters
+3. Predicts the wine quality score
+4. Outputs the prediction result
+
+## Data Schema
+
+The model uses the following features:
+- Fixed acidity
+- Volatile acidity
+- Citric acid
+- Residual sugar
+- Chlorides
+- Free sulfur dioxide
+- Total sulfur dioxide
+- Density
+- pH
+- Sulphates
+- Alcohol
+
+Target variable:
+- Quality (score from 0 to 10)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Apache Spark team for the MLlib library
+- AWS for cloud storage services
+- The wine quality dataset providers
 
 ## Project Overview
 
